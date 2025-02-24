@@ -32,10 +32,12 @@ def save_ip_reputation(ip, ip_type, reputation_score):
 
 # virustotal_api.py
 def check_ip_reputation(ip):
+    print(f"####### checking IP reputation...")
     url = f"https://www.virustotal.com/api/v3/ip_addresses/{ip}"
     headers = {"x-apikey": VT_API_KEY}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
+        print(f"######### response = 200")
         data = response.json()
         reputation_score = data.get("data", {}).get("attributes", {}).get("reputation", 0)
         ip_type = data.get("data", {}).get("type", "unknown")
@@ -53,4 +55,4 @@ if __name__ == "__main__":
     init_db()
     ip_type, score = check_ip_reputation(ip)
     save_ip_reputation(ip, ip_type, score)
-    print(f"IP: {ip}, Type: {ip_type}, Reputation Score: {score}")
+    print(f"######## IP: {ip}, Type: {ip_type}, Reputation Score: {score}")

@@ -1,3 +1,3 @@
 .venv/
 src/soar_siem_integration/__pycache__/
-soar_siem.db
+ip_reputation.db
